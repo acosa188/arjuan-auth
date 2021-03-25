@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 // Importing Routers
 const authRoute = require("./routes/auth");
@@ -21,6 +22,7 @@ process.env.DB_CONNECT,
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 
 // Route middlewares
 app.use("/api/user", authRoute);
