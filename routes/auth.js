@@ -26,11 +26,14 @@ router.post('/register', async (req, res) => {
 
     try {
         await user.save();
+        // create the token
+        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
         res.send({
             user: {
                 _id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                token: token
             }
         });
     } catch (e) {
